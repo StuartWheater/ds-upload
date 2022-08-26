@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dsUpload</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.6.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -103,8 +103,16 @@
 <div class="section level3">
 <h3 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h3>
-<p>The aim of the EU Child Cohort Network is to bring together data from existing child cohorts into one open and sustainable, multi-disciplinary network. To ensure sure that the EU Child Cohort Network is both open and sustainable, the consortia are using the data-sharing platform DataSHIELD.</p>
-<p>Participating cohorts must harmonise data, following the data harmonisation manuals. Secondly, perform quality-control checks on their harmonised data. Thirdly, upload descriptions of harmonisation to the cohort catalogue. The last step is uploading the data into the DataSHIELD backends. The guide below guides you through the process.</p>
+<p>The aim of the EU Child Cohort Network is to bring together data from
+existing child cohorts into one open and sustainable, multi-disciplinary
+network. To ensure sure that the EU Child Cohort Network is both open
+and sustainable, the consortia are using the data-sharing platform
+DataSHIELD.</p>
+<p>Participating cohorts must harmonise data, following the data
+harmonisation manuals. Secondly, perform quality-control checks on their
+harmonised data. Thirdly, upload descriptions of harmonisation to the
+cohort catalogue. The last step is uploading the data into the
+DataSHIELD backends. The guide below guides you through the process.</p>
 </div>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -117,56 +125,66 @@
 </ul>
 <p>You can install the package by executing the following command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dsUpload"</span>, repos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://registry.molgenis.org/repository/R/'</span>, <span class="st">'https://cran.datashield.org'</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dsUpload"</span>, repos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://registry.molgenis.org/repository/R/'</span>, <span class="st">'https://cran.datashield.org'</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>When you want to use it you need to load it.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load the package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lifecycle-project/ds-upload" class="external-link">dsUpload</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: DSI</span>
-<span class="co">#&gt; Loading required package: progress</span>
-<span class="co">#&gt; Loading required package: R6</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load the package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lifecycle-project/ds-upload" class="external-link">dsUpload</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: DSI</span></span>
+<span><span class="co">#&gt; Loading required package: progress</span></span>
+<span><span class="co">#&gt; Loading required package: R6</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
 </h3>
-<p>Check: <a href="https://github.com/lifecycle-project/ds-upload/blob/master/TROUBLESHOOTING.md" class="external-link">troubleshooting guide</a></p>
+<p>Check: <a href="https://github.com/lifecycle-project/ds-upload/blob/master/TROUBLESHOOTING.md" class="external-link">troubleshooting
+guide</a></p>
 </div>
 <div class="section level3">
 <h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h3>
-<p>To simplify the upload and importing of data dictionaries this package is written to import and upload the data dictionaries and data in one run. When running the package, you need to specify the data dictionary version and the data input file. When you use data formats other than CSV use need to specify the data format as well</p>
+<p>To simplify the upload and importing of data dictionaries this
+package is written to import and upload the data dictionaries and data
+in one run. When running the package, you need to specify the data
+dictionary version and the data input file. When you use data formats
+other than CSV use need to specify the data format as well</p>
 <p><strong>Prerequisites</strong></p>
 <ul>
 <li>
 <p>Upload core variables</p>
-<p>Merge all the variables that are obtained in the dictionary of the core variables. So in general that means merge the data of WP1 and WP3 into one set.</p>
+<p>Merge all the variables that are obtained in the dictionary of the
+core variables. So in general that means merge the data of WP1 and WP3
+into one set.</p>
 </li>
 <li>
 <p>Upload outcome variables</p>
-<p>Merge all the variables that are obtained in the dictionary of the outcome variables. So in general this means merge the data of WP4, WP5 and WP6 into one set.</p>
+<p>Merge all the variables that are obtained in the dictionary of the
+outcome variables. So in general this means merge the data of WP4, WP5
+and WP6 into one set.</p>
 </li>
 </ul>
 <div class="section level4">
 <h4 id="using-armadillo">Using Armadillo<a class="anchor" aria-label="anchor" href="#using-armadillo"></a>
 </h4>
-<p>Please following the instruction below to upload the core and outcome variables in the Aramdillo.</p>
+<p>Please following the instruction below to upload the core and outcome
+variables in the Aramdillo.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-  server <span class="op">=</span> <span class="st">"https://armadillo.test.molgenis.org"</span>, 
-  storage <span class="op">=</span> <span class="st">"https://armadillo-minio.test.molgenis.org"</span>, 
-  driver <span class="op">=</span> <span class="st">"ArmadilloDriver"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  server <span class="op">=</span> <span class="st">"https://armadillo.test.molgenis.org"</span>, </span>
+<span>  storage <span class="op">=</span> <span class="st">"https://armadillo-minio.test.molgenis.org"</span>, </span>
+<span>  driver <span class="op">=</span> <span class="st">"ArmadilloDriver"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># login to the Armadillo server</span>
-<span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span>login_data <span class="op">=</span> <span class="va">login_data</span><span class="op">)</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span>
-<span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span>
-<span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span>
-<span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   Login to: "https://armadillo.test.molgenis.org"</span>
-<span class="co">#&gt; [1] "We're opening a browser so you can log in with code GFL6Q6"</span>
-<span class="co">#&gt;   Logged on to: "https://armadillo.test.molgenis.org"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># login to the Armadillo server</span></span>
+<span><span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span>login_data <span class="op">=</span> <span class="va">login_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span></span>
+<span><span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span></span>
+<span><span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span></span>
+<span><span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   Login to: "https://armadillo.test.molgenis.org"</span></span>
+<span><span class="co">#&gt; [1] "We're opening a browser so you can log in with code GFL6Q6"</span></span>
+<span><span class="co">#&gt;   Logged on to: "https://armadillo.test.molgenis.org"</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># upload the data into the DataSHIELD backend</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># these are the core variables</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># be advised the default input format is 'CSV'</span></span>
@@ -381,178 +399,187 @@
 <h4 id="using-opal">Using Opal<a class="anchor" aria-label="anchor" href="#using-opal"></a>
 </h4>
 <p>A video guiding you through the process can be found here:</p>
-<p>Check youtube channel: <a href="https://youtu.be/fUrpbstPCsU" class="external-link">upload data dictionaries and data into Opal</a></p>
+<p>Check youtube channel: <a href="https://youtu.be/fUrpbstPCsU" class="external-link">upload
+data dictionaries and data into Opal</a></p>
 <p>Alternatively, execute these commands in your R-console:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-  server <span class="op">=</span> <span class="st">"https://opal.edge.molgenis.org"</span>, 
-  user <span class="op">=</span> <span class="st">"administrator"</span>, 
-  password <span class="op">=</span> <span class="st">"ouf0uPh6"</span>,
-  driver <span class="op">=</span> <span class="st">"OpalDriver"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">login_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  server <span class="op">=</span> <span class="st">"https://opal.edge.molgenis.org"</span>, </span>
+<span>  user <span class="op">=</span> <span class="st">"administrator"</span>, </span>
+<span>  password <span class="op">=</span> <span class="st">"ouf0uPh6"</span>,</span>
+<span>  driver <span class="op">=</span> <span class="st">"OpalDriver"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># login to the DataSHIELD backend</span>
-<span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span>login_data <span class="op">=</span> <span class="va">login_data</span><span class="op">)</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span>
-<span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span>
-<span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span>
-<span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   Login to: "https://opal.edge.molgenis.org"</span>
-<span class="co">#&gt;   Logged on to: "https://opal.edge.molgenis.org"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># login to the DataSHIELD backend</span></span>
+<span><span class="fu"><a href="../reference/du.login.html">du.login</a></span><span class="op">(</span>login_data <span class="op">=</span> <span class="va">login_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span></span>
+<span><span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span></span>
+<span><span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span></span>
+<span><span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   Login to: "https://opal.edge.molgenis.org"</span></span>
+<span><span class="co">#&gt;   Logged on to: "https://opal.edge.molgenis.org"</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># upload the data into the DataSHIELD backend</span>
-<span class="co"># these are the core variables</span>
-<span class="co"># be advised the default input format is 'CSV'</span>
-<span class="co"># you can use STATA, SPSS, SAS and CSV's as source files</span>
-<span class="fu"><a href="../reference/du.upload.html">du.upload</a></span><span class="op">(</span>
-  cohort_id <span class="op">=</span> <span class="st">'gecko'</span>, 
-  dict_version <span class="op">=</span> <span class="st">'2_1'</span>, 
-  dict_kind <span class="op">=</span> <span class="st">'core'</span>, 
-  data_version <span class="op">=</span> <span class="st">'1_0'</span>, 
-  data_input_format <span class="op">=</span> <span class="st">'CSV'</span>,
-  data_input_path <span class="op">=</span> <span class="st">'https://github.com/lifecycle-project/ds-upload/blob/master/inst/examples/data/WP1/data/all_measurements_v1_2.csv?raw=true'</span>,
-  run_mode <span class="op">=</span> <span class="st">"non_interactive"</span>
-<span class="op">)</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span>
-<span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span>
-<span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span>
-<span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start upload data into DataSHIELD backend</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;  * Create temporary workdir</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start download dictionaries</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt; * Download: [ 2_1_monthly_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 2_1_non_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 2_1_trimester_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 2_1_yearly_rep.xlsx ]</span>
-<span class="co">#&gt;   Successfully downloaded dictionaries</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start importing data dictionaries</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;  * Check released dictionaries</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;   Start creating project: [ lc_gecko_core_2_1 ]</span>
-<span class="co">#&gt; * Project: [ lc_gecko_core_2_1 ] already exists</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;   Start importing dictionaries</span>
-<span class="co">#&gt; * Table: [ 1_0_monthly_rep ] already exists</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_monthly_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_non_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_non_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_non_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_trimester_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_trimester_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_trimester_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_yearly_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_yearly_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_yearly_rep ]</span>
-<span class="co">#&gt;   All dictionaries are populated correctly</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start converting and uploading data</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt; * Setup: load data and set output directory</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt; [WARNING] This is an unmatched column, it will be dropped : [ art ].</span>
-<span class="co">#&gt; * Generating: non-repeated measures</span>
-<span class="co">#&gt; * Generating: yearly-repeated measures</span>
-<span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span>
-<span class="co">#&gt; * Generating: monthly-repeated measures</span>
-<span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span>
-<span class="co">#&gt; * Generating: trimesterly-repeated measures</span>
-<span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_trimester_repeated_measures.csv ] to directory [ core ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_non_repeated_measures.csv ] to directory [ core ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_yearly_repeated_measures.csv ] to directory [ core ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_monthly_repeated_measures.csv ] to directory [ core ]</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Converting and import successfully finished</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;  * Reinstate default working directory</span>
-<span class="co">#&gt;  * Cleanup temporary directory</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># upload the data into the DataSHIELD backend</span></span>
+<span><span class="co"># these are the core variables</span></span>
+<span><span class="co"># be advised the default input format is 'CSV'</span></span>
+<span><span class="co"># you can use STATA, SPSS, SAS and CSV's as source files</span></span>
+<span><span class="fu"><a href="../reference/du.upload.html">du.upload</a></span><span class="op">(</span></span>
+<span>  cohort_id <span class="op">=</span> <span class="st">'gecko'</span>, </span>
+<span>  dict_version <span class="op">=</span> <span class="st">'2_1'</span>, </span>
+<span>  dict_kind <span class="op">=</span> <span class="st">'core'</span>, </span>
+<span>  data_version <span class="op">=</span> <span class="st">'1_0'</span>, </span>
+<span>  data_input_format <span class="op">=</span> <span class="st">'CSV'</span>,</span>
+<span>  data_input_path <span class="op">=</span> <span class="st">'https://github.com/lifecycle-project/ds-upload/blob/master/inst/examples/data/WP1/data/all_measurements_v1_2.csv?raw=true'</span>,</span>
+<span>  run_mode <span class="op">=</span> <span class="st">"non_interactive"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span></span>
+<span><span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span></span>
+<span><span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span></span>
+<span><span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start upload data into DataSHIELD backend</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;  * Create temporary workdir</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start download dictionaries</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; * Download: [ 2_1_monthly_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 2_1_non_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 2_1_trimester_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 2_1_yearly_rep.xlsx ]</span></span>
+<span><span class="co">#&gt;   Successfully downloaded dictionaries</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start importing data dictionaries</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;  * Check released dictionaries</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;   Start creating project: [ lc_gecko_core_2_1 ]</span></span>
+<span><span class="co">#&gt; * Project: [ lc_gecko_core_2_1 ] already exists</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;   Start importing dictionaries</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_monthly_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_monthly_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_non_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_non_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_non_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_trimester_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_trimester_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_trimester_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_yearly_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_yearly_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_yearly_rep ]</span></span>
+<span><span class="co">#&gt;   All dictionaries are populated correctly</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start converting and uploading data</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt; * Setup: load data and set output directory</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; [WARNING] This is an unmatched column, it will be dropped : [ art ].</span></span>
+<span><span class="co">#&gt; * Generating: non-repeated measures</span></span>
+<span><span class="co">#&gt; * Generating: yearly-repeated measures</span></span>
+<span><span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span></span>
+<span><span class="co">#&gt; * Generating: monthly-repeated measures</span></span>
+<span><span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span></span>
+<span><span class="co">#&gt; * Generating: trimesterly-repeated measures</span></span>
+<span><span class="co">#&gt; Aggregate function missing, defaulting to 'length'</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_trimester_repeated_measures.csv ] to directory [ core ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_non_repeated_measures.csv ] to directory [ core ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_yearly_repeated_measures.csv ] to directory [ core ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-40-58_1_0_monthly_repeated_measures.csv ] to directory [ core ]</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Converting and import successfully finished</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;  * Reinstate default working directory</span></span>
+<span><span class="co">#&gt;  * Cleanup temporary directory</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># upload the outcome variables</span>
-<span class="fu"><a href="../reference/du.upload.html">du.upload</a></span><span class="op">(</span>
-  cohort_id <span class="op">=</span> <span class="st">'gecko'</span>, 
-  dict_version <span class="op">=</span> <span class="st">'1_1'</span>, 
-  dict_kind <span class="op">=</span> <span class="st">'outcome'</span>, 
-  data_version <span class="op">=</span> <span class="st">'1_0'</span>, 
-  data_input_format <span class="op">=</span> <span class="st">'CSV'</span>,
-  data_input_path <span class="op">=</span> <span class="st">'https://github.com/lifecycle-project/ds-upload/blob/master/inst/examples/data/WP6/nd_data_wp6.csv?raw=true'</span>,
-  run_mode <span class="op">=</span> <span class="st">"non_interactive"</span>
-<span class="op">)</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span>
-<span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span>
-<span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span>
-<span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span>
-<span class="co">#&gt; ***********************************************************************************</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start upload data into DataSHIELD backend</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;  * Create temporary workdir</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start download dictionaries</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt; * Download: [ 1_1_monthly_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 1_1_non_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 1_1_weekly_rep.xlsx ]</span>
-<span class="co">#&gt; * Download: [ 1_1_yearly_rep.xlsx ]</span>
-<span class="co">#&gt;   Successfully downloaded dictionaries</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start importing data dictionaries</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;  * Check released dictionaries</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;   Start creating project: [ lc_gecko_outcome_1_1 ]</span>
-<span class="co">#&gt; * Project: [ lc_gecko_outcome_1_1 ] already exists</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt;   Start importing dictionaries</span>
-<span class="co">#&gt; * Table: [ 1_0_monthly_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_monthly_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_monthly_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_non_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_non_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_non_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_weekly_rep ] already exists</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_weekly_rep ]</span>
-<span class="co">#&gt; * Table: [ 1_0_yearly_rep ] already exists</span>
-<span class="co">#&gt; * Matched categories for table: [ 1_0_yearly_rep ]</span>
-<span class="co">#&gt; * Import variables into: [ 1_0_yearly_rep ]</span>
-<span class="co">#&gt;   All dictionaries are populated correctly</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Start converting and uploading data</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt; * Setup: load data and set output directory</span>
-<span class="co">#&gt; ------------------------------------------------------</span>
-<span class="co">#&gt; * Generating: non-repeated measures</span>
-<span class="co">#&gt; * Generating: yearly-repeated measures</span>
-<span class="co">#&gt; * Generating: monthly-repeated measures</span>
-<span class="co">#&gt; * Generating: weekly-repeated measures</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_weekly_repeated_measures.csv ] to directory [ outcome ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_non_repeated_measures.csv ] to directory [ outcome ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_yearly_repeated_measures.csv ] to directory [ outcome ]</span>
-<span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_monthly_repeated_measures.csv ] to directory [ outcome ]</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;   Converting and import successfully finished</span>
-<span class="co">#&gt; ######################################################</span>
-<span class="co">#&gt;  * Reinstate default working directory</span>
-<span class="co">#&gt;  * Cleanup temporary directory</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># upload the outcome variables</span></span>
+<span><span class="fu"><a href="../reference/du.upload.html">du.upload</a></span><span class="op">(</span></span>
+<span>  cohort_id <span class="op">=</span> <span class="st">'gecko'</span>, </span>
+<span>  dict_version <span class="op">=</span> <span class="st">'1_1'</span>, </span>
+<span>  dict_kind <span class="op">=</span> <span class="st">'outcome'</span>, </span>
+<span>  data_version <span class="op">=</span> <span class="st">'1_0'</span>, </span>
+<span>  data_input_format <span class="op">=</span> <span class="st">'CSV'</span>,</span>
+<span>  data_input_path <span class="op">=</span> <span class="st">'https://github.com/lifecycle-project/ds-upload/blob/master/inst/examples/data/WP6/nd_data_wp6.csv?raw=true'</span>,</span>
+<span>  run_mode <span class="op">=</span> <span class="st">"non_interactive"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt;   [WARNING] You are not running the latest version of the dsUpload-package.</span></span>
+<span><span class="co">#&gt;   [WARNING] If you want to upgrade to newest version : [ 4.0.6 ],</span></span>
+<span><span class="co">#&gt;   [WARNING] Please run 'install.packages("dsUpload", repos = "https://registry.molgenis.org/repository/R/")'</span></span>
+<span><span class="co">#&gt;   [WARNING] Check the release notes here: https://github.com/lifecycle-project/analysis-protocols/releases/tag/4.0.6</span></span>
+<span><span class="co">#&gt; ***********************************************************************************</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start upload data into DataSHIELD backend</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;  * Create temporary workdir</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start download dictionaries</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; * Download: [ 1_1_monthly_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 1_1_non_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 1_1_weekly_rep.xlsx ]</span></span>
+<span><span class="co">#&gt; * Download: [ 1_1_yearly_rep.xlsx ]</span></span>
+<span><span class="co">#&gt;   Successfully downloaded dictionaries</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start importing data dictionaries</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;  * Check released dictionaries</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;   Start creating project: [ lc_gecko_outcome_1_1 ]</span></span>
+<span><span class="co">#&gt; * Project: [ lc_gecko_outcome_1_1 ] already exists</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt;   Start importing dictionaries</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_monthly_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_monthly_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_monthly_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_non_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_non_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_non_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_weekly_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_weekly_rep ]</span></span>
+<span><span class="co">#&gt; * Table: [ 1_0_yearly_rep ] already exists</span></span>
+<span><span class="co">#&gt; * Matched categories for table: [ 1_0_yearly_rep ]</span></span>
+<span><span class="co">#&gt; * Import variables into: [ 1_0_yearly_rep ]</span></span>
+<span><span class="co">#&gt;   All dictionaries are populated correctly</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Start converting and uploading data</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt; * Setup: load data and set output directory</span></span>
+<span><span class="co">#&gt; ------------------------------------------------------</span></span>
+<span><span class="co">#&gt; * Generating: non-repeated measures</span></span>
+<span><span class="co">#&gt; * Generating: yearly-repeated measures</span></span>
+<span><span class="co">#&gt; * Generating: monthly-repeated measures</span></span>
+<span><span class="co">#&gt; * Generating: weekly-repeated measures</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_weekly_repeated_measures.csv ] to directory [ outcome ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_non_repeated_measures.csv ] to directory [ outcome ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_yearly_repeated_measures.csv ] to directory [ outcome ]</span></span>
+<span><span class="co">#&gt; * Upload: [ 2021-01-29_11-41-21_1_0_monthly_repeated_measures.csv ] to directory [ outcome ]</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;   Converting and import successfully finished</span></span>
+<span><span class="co">#&gt; ######################################################</span></span>
+<span><span class="co">#&gt;  * Reinstate default working directory</span></span>
+<span><span class="co">#&gt;  * Cleanup temporary directory</span></span></code></pre></div>
 <blockquote>
-<p><strong>IMPORTANT</strong>: You can run this package for the core variables and for the outcome variables. Each of them requires changing some parameters in the function call. So dict_kind specific ‘core’ or ‘outcome’ variables and dict_version specifies the data dictionary version (check the changelogs here: <a href="https://github.com/lifecycle-project/ds-dictionaries/tree/master/changelogs" class="external-link uri">https://github.com/lifecycle-project/ds-dictionaries/tree/master/changelogs</a>).</p>
+<p><strong>IMPORTANT</strong>: You can run this package for the core
+variables and for the outcome variables. Each of them requires changing
+some parameters in the function call. So dict_kind specific ‘core’ or
+‘outcome’ variables and dict_version specifies the data dictionary
+version (check the changelogs here: <a href="https://github.com/lifecycle-project/ds-dictionaries/tree/master/changelogs" class="external-link uri">https://github.com/lifecycle-project/ds-dictionaries/tree/master/changelogs</a>).</p>
 </blockquote>
 <blockquote>
-<p><strong>IMPORTANT</strong> You can specify your upload format! So you do not have to export to CSV first. Supported upload formats are: ‘SPSS’, ‘SAS’, ‘STATA’ and ‘CSV’.</p>
+<p><strong>IMPORTANT</strong> You can specify your upload format! So you
+do not have to export to CSV first. Supported upload formats are:
+‘SPSS’, ‘SAS’, ‘STATA’ and ‘CSV’.</p>
 </blockquote>
 <div class="section level5">
 <h5 id="import-the-data">Import the data<a class="anchor" aria-label="anchor" href="#import-the-data"></a>
 </h5>
-<p>If you run these commands, your data will be uploaded to the DataSHIELD backend. If you use Opal, you can now import these data into the tables manually.</p>
+<p>If you run these commands, your data will be uploaded to the
+DataSHIELD backend. If you use Opal, you can now import these data into
+the tables manually.</p>
 <p>A video guiding you through the process can be found here: <a href="https://youtu.be/BKDnIAQzpdY" class="external-link">import data into Opal</a></p>
 <p>Alternatively, execute these actions for Opal:</p>
 <ol style="list-style-type: decimal">
@@ -562,15 +589,21 @@
 <li>Select “lc_#cohort#_#dict_kind#_x_x”</li>
 <li>Select “Import”</li>
 <li>Choose the CSV-file</li>
-<li>Select the target table (depending on your choice regarding the file you have chosen)</li>
+<li>Select the target table (depending on your choice regarding the file
+you have chosen)</li>
 <li>Click on “Next”</li>
 <li>Click on “Next”</li>
-<li>Determine that you all variables are matched, otherwise you need to fix your source-data first</li>
+<li>Determine that you all variables are matched, otherwise you need to
+fix your source-data first</li>
 </ol>
 <blockquote>
-<p><strong>IMPORTANT</strong>: make sure no NEW variables are introduce 11. Click on “Finish” 12. Check the “Task logs” (on the left side of the screen, in the icon bar)</p>
+<p><strong>IMPORTANT</strong>: make sure no NEW variables are introduce
+11. Click on “Finish” 12. Check the “Task logs” (on the left side of the
+screen, in the icon bar)</p>
 </blockquote>
-<p>It will match your data dictionary and determine which variables are matched or not. You can re-upload the source files as often as needed.</p>
+<p>It will match your data dictionary and determine which variables are
+matched or not. You can re-upload the source files as often as
+needed.</p>
 </div>
 </div>
 </div>
@@ -589,12 +622,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Sido Haakma, Angela Pinot de Moira, Maxime Cornet, Sebastian Rauschert.</p>
+<p>Developed by Mariska Slofstra, Sido Haakma, Angela Pinot de Moira, Maxime Cornet, Sebastian Rauschert.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
